@@ -1,0 +1,19 @@
+
+.para{
+    font-size: 36px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 391px;
+    flex-direction: column;
+    
+}
+.logo{
+  font-size: medium;
+  text-align: center;
+  margin-top: 66px;
+}
+.product-description{
+    font-size: large;
+
+}
