@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react'
 import axios from "axios";
-
 
 import './Register.css';
 
 const Register = (props) => {
   const [user, setUser] = useState({
-    name: "",
-    username: "",
+    email: "",
     password: "",
     cpassword: "",
-    authority: "admin",
+    authority: "ADMIN",
   });
   const [error, setError] = useState(null);
 
@@ -22,11 +20,18 @@ const Register = (props) => {
     setUser({ ...user, [name]: value });
   };
 
+  useEffect(() => {
+    if(user.cpassword !== user.password)
+      setError("Passwords don't match");
+    else
+      setError("");
+    document.getElementsByClassName("Rcontainer")['0'].style.height=(window.innerHeight-65)+"px";
+  }, [user.password, user.cpassword])
+
   const handleRegister = () => {
     axios
-      .post("http://localhost:4000/user/register", {
-        name: user.name,
-        username: user.username,
+      .post("http://localhost:4000/api/auth/register-admin", {
+        email: user.email,
         password: user.password,
         cpassword: user.cpassword,
         authority: user.authority,
@@ -36,17 +41,21 @@ const Register = (props) => {
         console.log(res.data);
       })
       .catch((err) => {
-        setError(err.response.data.message);
+        if(err.response.status===400) {
+          setError("Some of the fields are missing!!");
+        }
+        else if(err.response.status===500) {
+          setError("Server failed");
+        }
       });
   };
 
   return (
     <div className="Rcontainer">
-      
       <form className="register-form" id="register-form">
       <p className="form-title">Register Here!!</p>
-        <div className="form-group">
-          <label className="Rlabelcontainer" htmlFor="name">Name</label>
+        {/* <div className="form-group">
+          <label className="Rlabelcontainer" htmlFor="name">First Name</label>
           <input className="Rinputcontainer"
             type="text"
             value={user.name}
@@ -55,15 +64,15 @@ const Register = (props) => {
             id="name"
             required
           />
-        </div>
+        </div> */}
         <div className="form-group">
-          <label className="Rlabelcontainer" htmlFor="username">Username</label>
+          <label className="Rlabelcontainer" htmlFor="email">Email ID</label>
           <input className="Rinputcontainer"
             type="text"
-            value={user.username}
+            value={user.email}
             onChange={handleInputs}
-            name="username"
-            id="username"
+            name="email"
+            id="email"
             required
           />
         </div>
@@ -90,10 +99,7 @@ const Register = (props) => {
           />
         </div>
         {error && (
-        <>
-          <small style={{ color: "red" }}>{error}</small>
-          <br />
-        </>
+          <small style={{ color: "red", textAlign:"center", fontSize:"16px", marginTop:"10px" }}>{error}</small>
       )}
       <br />
         <div className="form-group form-button">

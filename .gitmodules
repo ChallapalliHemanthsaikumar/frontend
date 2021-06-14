@@ -1,0 +1,3 @@
+[submodule "spanndeep-backend"]
+	path = spanndeep-backend
+	url = https://github.com/pruthvi2103/spanndeep-backend/

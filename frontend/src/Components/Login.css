@@ -1,24 +1,22 @@
 .outer{
     background: url(https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80);
-    height:40rem;
+    height:33.2rem;
     background-size: cover;
 }
-.content{
-    /* background: url(https://source.unsplash.com/random); */
-}
+
 .container{
     position: relative;
     top: 100px;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-content: space-around;
     width: 25rem;
     border: 2px solid #91b7e3;
     /* padding-bottom: 19px; */
     background: #faf8f3;
     border-radius: 30px;
-    height: 265px;
+    height: 290px;
     flex-wrap: wrap;
 
 }
@@ -27,6 +25,7 @@
     text-align: center;
     position: relative;
     top: 30px;
+    padding: 0px;
 }
 .inputcontainer{
     float: right;
@@ -35,4 +34,14 @@
 .labelcontainer{
     padding-left: 0px;
     padding-right: 30px;
+}
+
+.loginButton {
+    width: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.submit {
+    width: 80px;
 }
