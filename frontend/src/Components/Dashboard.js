@@ -11,12 +11,15 @@ function Dashboard(props) {
   const handleLogout = () => {
     removeUserSession();
     props.history.push('/login');
-  }
+  };
 
   return (
-    <div >
-      <br/><br/>Welcome Admin {user.email}!<br /><br />
-      <input type="button" onClick={handleLogout} value="Logout" />
+    <div>
+      <br />
+      <br />
+      Welcome Admin {user.email}!<br />
+      <br />
+      <input type='button' onClick={handleLogout} value='Logout' />
     </div>
   );
 }
