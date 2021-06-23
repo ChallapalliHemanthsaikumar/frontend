@@ -65,6 +65,10 @@ const Register = (props) => {
     setSnackBarOpen(false);
   };
 
+  // set the position of error snackbar
+  var vertical = 'top';
+  var horizontal = 'center';
+
   return (
     <div className='Rcontainer'>
       <form className='register-form' id='register-form'>
@@ -137,9 +141,11 @@ const Register = (props) => {
         {error && (
           <>
             <Snackbar
+              className='snackbar-reg'
               open={snackBarOpen}
               autoHideDuration={6000}
               onClose={handleClose}
+              anchorOrigin={{ vertical, horizontal }}
             >
               <Alert onClose={handleClose} severity='error'>
                 {error}

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { setUserSession } from '../Utils/Common';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import { makeStyles } from '@material-ui/core/styles';
 
 import './Login.css';
 
@@ -56,6 +57,10 @@ const Login = (props) => {
     setSnackBarOpen(false);
   };
 
+  // set the position of error snackbar
+  var vertical = 'top';
+  var horizontal = 'center';
+
   return (
     <div className='outer'>
       <div className='container'>
@@ -71,17 +76,19 @@ const Login = (props) => {
           <input className='inputcontainer' type='password' {...password} />
         </div>
         {error && (
-          <>
+          <div>
             <Snackbar
+              className='snackbar-log'
               open={snackBarOpen}
               autoHideDuration={6000}
               onClose={handleClose}
+              anchorOrigin={{ vertical, horizontal }}
             >
               <Alert onClose={handleClose} severity='error'>
                 {error}
               </Alert>
             </Snackbar>
-          </>
+          </div>
         )}
         <br />
         <div className='loginButton'>

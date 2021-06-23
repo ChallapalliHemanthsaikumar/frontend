@@ -1,56 +1,59 @@
-.Rcontainer{
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    /* background: url(https://source.unsplash.com/random); */
-    display: flex;
-    align-content: center;
-    justify-content: center;
+.Rcontainer {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  /* background: url(https://source.unsplash.com/random); */
+  display: flex;
+  align-content: center;
+  justify-content: center;
 
-    background: url(https://source.unsplash.com/random);
-    
-    background-size: cover;
-    background-position-y: center;
-    background-repeat: no-repeat;
+  background: url(https://source.unsplash.com/random);
+
+  background-size: cover;
+  background-position-y: center;
+  background-repeat: no-repeat;
 }
-.form-title{
-    text-align: center;
-    font-size: 30px;
+.form-title {
+  text-align: center;
+  font-size: 30px;
 }
-.Rinputcontainer{
-    float: right;
-    width: 15rem;
+.Rinputcontainer {
+  float: right;
+  width: 15rem;
 }
-.Rlabelcontainer{
-    padding-left: 0px;
-    padding-right: 30px;
+.Rlabelcontainer {
+  padding-left: 0px;
+  padding-right: 30px;
 }
-.form-group{
-    display: flow-root;
-    padding-top: 12px;
+.form-group {
+  display: flow-root;
+  padding-top: 12px;
 }
-.register-form{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    align-items: stretch;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: space-around;
-    width: 35rem;
-    position: relative;
-    top: 75px;
-    background: #faf8f3;
-    border: 2px solid #91b7e3;
-    /* padding-bottom: 19px; */
-    border-radius: 30px;
-    height: 27rem;
-    flex-wrap: wrap;
+.register-form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+  width: 35rem;
+  position: relative;
+  top: 75px;
+  background: #faf8f3;
+  border: 2px solid #91b7e3;
+  /* padding-bottom: 19px; */
+  border-radius: 30px;
+  height: 27rem;
+  flex-wrap: wrap;
 }
-.form-submit{
-    display: block;
-    margin: auto;
+.form-submit {
+  display: block;
+  margin: auto;
+}
+.snackbar-reg {
+  margin-top: 50px;
 }
