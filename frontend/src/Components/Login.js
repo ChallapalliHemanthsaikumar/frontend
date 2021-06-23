@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { setUserSession } from '../Utils/Common';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 import './Login.css';
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant='filled' {...props} />;
+}
 
 const Login = (props) => {
   const [loading, setLoading] = useState(false);
   const email = useFormInput('');
   const password = useFormInput('');
   const [error, setError] = useState(null);
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
 
   useEffect(() => {
     document.getElementsByClassName('outer')['0'].style.height =
@@ -17,6 +24,7 @@ const Login = (props) => {
 
   // handle button click of login form
   const handleLogin = () => {
+    setSnackBarOpen(true);
     setError(null);
     setLoading(true);
     axios
@@ -40,6 +48,14 @@ const Login = (props) => {
       });
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackBarOpen(false);
+  };
+
   return (
     <div className='outer'>
       <div className='container'>
@@ -56,16 +72,15 @@ const Login = (props) => {
         </div>
         {error && (
           <>
-            <small
-              style={{
-                color: 'red',
-                textAlign: 'center',
-                marginTop: '10px',
-                fontSize: '16px',
-              }}
+            <Snackbar
+              open={snackBarOpen}
+              autoHideDuration={6000}
+              onClose={handleClose}
             >
-              {error}
-            </small>
+              <Alert onClose={handleClose} severity='error'>
+                {error}
+              </Alert>
+            </Snackbar>
           </>
         )}
         <br />
