@@ -143,7 +143,7 @@ const Register = (props) => {
             <Snackbar
               className='snackbar-reg'
               open={snackBarOpen}
-              autoHideDuration={6000}
+              autoHideDuration={5000}
               onClose={handleClose}
               anchorOrigin={{ vertical, horizontal }}
             >

@@ -18,14 +18,12 @@
   border-radius: 30px;
   height: 290px;
   flex-wrap: wrap;
-  padding: 25px;
 }
 .container h1 {
   font-size: 30px;
   text-align: center;
-  /* position: relative; */
+  position: relative;
   top: 30px;
-  padding: 0px;
   margin-bottom: 30px;
 }
 .inputcontainer {
