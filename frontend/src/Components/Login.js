@@ -18,7 +18,7 @@ const Login = (props) => {
   const [snackBarOpen, setSnackBarOpen] = useState(false);
 
   useEffect(() => {
-    document.getElementsByClassName('outer')['0'].style.height =
+    document.getElementsByClassName('outer-log')['0'].style.height =
       window.innerHeight - 65 + 'px';
   });
 
@@ -61,45 +61,68 @@ const Login = (props) => {
   var horizontal = 'center';
 
   return (
-    <div className='outer'>
-      <div className='container'>
-        <h1>Login</h1>
-        <br />
-        <br />
-        <div>
-          <label className='labelcontainer'>Email ID</label>
-          <input className='inputcontainer' type='text' {...email} />
-        </div>
-        <div style={{ marginTop: 10 }}>
-          <label className='labelcontainer'>Password</label>
-          <input className='inputcontainer' type='password' {...password} />
-        </div>
-        <br />
-        <div className='loginButton'>
-          <input
-            type='button'
-            className='submit'
-            value={loading ? 'Loading...' : 'Login'}
-            onClick={handleLogin}
-            disabled={loading}
-          />
+    <div className='outer-log'>
+      <div id='container-log'>
+        <div id='form-container-log'>
+          <div id='form-shadow'>
+            <div id='loginHeading'>
+              <h1>Login</h1>
+            </div>
+
+            <div className='input-styles'>
+              {/* <label className="labelcontainer" >Email ID</label> */}
+              <input
+                className='box'
+                type='text'
+                placeholder='E-Mail'
+                {...email}
+              />
+            </div>
+            <div style={{ marginTop: 10 }}>
+              <div className='input-styles'>
+                {/* <label className="labelcontainer" >Password</label> */}
+                <input
+                  className='box'
+                  type='password'
+                  placeholder='Password'
+                  {...password}
+                />
+              </div>
+            </div>
+            {error && (
+              <div>
+                <Snackbar
+                  className='snackbar-log'
+                  open={snackBarOpen}
+                  autoHideDuration={5000}
+                  onClose={handleClose}
+                  anchorOrigin={{ vertical, horizontal }}
+                >
+                  <Alert onClose={handleClose} severity='error'>
+                    {error}
+                  </Alert>
+                </Snackbar>
+              </div>
+            )}
+            <br />
+            <div className='input-styles submit-btn'>
+              <input
+                type='button'
+                id='login'
+                className='submit'
+                value={loading ? 'Loading...' : 'Login'}
+                onClick={handleLogin}
+                disabled={loading}
+              />
+            </div>
+            <div id='registration-page'>
+              <a href='/register'>
+                <h4>Not Registered? Click here to Register</h4>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-      {error && (
-        <div>
-          <Snackbar
-            className='snackbar-log'
-            open={snackBarOpen}
-            autoHideDuration={5000}
-            onClose={handleClose}
-            anchorOrigin={{ vertical, horizontal }}
-          >
-            <Alert onClose={handleClose} severity='error'>
-              {error}
-            </Alert>
-          </Snackbar>
-        </div>
-      )}
     </div>
   );
 };
