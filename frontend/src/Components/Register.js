@@ -37,6 +37,7 @@ const Register = (props) => {
   },[]);
 
   const handleRegister = () => {
+    setError("");
     if (user.cpassword !== user.password) setError("Passwords don't match");
     else if (user.password.length < 5)
       setError("Minimum length of password is 5 characters");
