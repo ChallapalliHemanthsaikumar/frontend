@@ -19,7 +19,7 @@ const Login = (props) => {
 
   useEffect(() => {
     document.getElementsByClassName('outer-log')['0'].style.height =
-      window.innerHeight - 65 + 'px';
+      window.innerHeight - 64 + 'px';
   });
 
   // handle button click of login form
@@ -41,7 +41,7 @@ const Login = (props) => {
       })
       .catch((error) => {
         setLoading(false);
-        if (error.response.status === 400) setError('Fill all the fields!!');
+        if (error.response.status === 400) setError('Some of the fields are missing!!');
         else if (error.response.status === 401)
           setError('Email address or password is incorrect');
         else setError('Something went wrong. Please try again later.');
@@ -64,25 +64,25 @@ const Login = (props) => {
     <div className='outer-log'>
       <div id='container-log'>
         <div id='form-container-log'>
-          <div id='form-shadow'>
+          <div id='login-form-shadow'>
             <div id='loginHeading'>
               <h1>Login</h1>
             </div>
 
-            <div className='input-styles'>
+            <div className='login-input-styles'>
               {/* <label className="labelcontainer" >Email ID</label> */}
               <input
-                className='box'
+                className='login-box'
                 type='text'
                 placeholder='E-Mail'
                 {...email}
               />
             </div>
-            <div style={{ marginTop: 10 }}>
-              <div className='input-styles'>
+            <div>
+              <div className='login-input-styles'>
                 {/* <label className="labelcontainer" >Password</label> */}
                 <input
-                  className='box'
+                  className='login-box'
                   type='password'
                   placeholder='Password'
                   {...password}
@@ -92,7 +92,7 @@ const Login = (props) => {
             {error && (
               <div>
                 <Snackbar
-                  className='snackbar-log'
+                  className='login-snackbar-log'
                   open={snackBarOpen}
                   autoHideDuration={5000}
                   onClose={handleClose}
@@ -105,11 +105,11 @@ const Login = (props) => {
               </div>
             )}
             <br />
-            <div className='input-styles submit-btn'>
+            <div className='login-input-styles login-submit-btn'>
               <input
                 type='button'
                 id='login'
-                className='submit'
+                className='login'
                 value={loading ? 'Loading...' : 'Login'}
                 onClick={handleLogin}
                 disabled={loading}

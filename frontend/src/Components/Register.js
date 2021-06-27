@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import axios from "axios";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
-import './Register.css';
+import "./Register.css";
 
 function Alert(props) {
-  return <MuiAlert elevation={6} variant='filled' {...props} />;
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 const Register = (props) => {
   const [user, setUser] = useState({
-    email: '',
-    password: '',
-    cpassword: '',
-    authority: 'ADMIN',
+    email: "",
+    password: "",
+    cpassword: "",
+    firstName: "",
+    lastName: "",
+    age: "",
+    gender: "",
   });
   const [error, setError] = useState(null);
   const [snackBarOpen, setSnackBarOpen] = useState(false);
@@ -28,38 +32,42 @@ const Register = (props) => {
   };
 
   useEffect(() => {
-    if (user.cpassword !== user.password) setError("Passwords don't match");
-    else setError('');
-    document.getElementsByClassName('box inline-box right-box')[
-      '0'
-    ].style.height = window.innerHeight - 65 + 'px';
-  }, [user.password, user.cpassword]);
+    document.getElementById("registration-container").style.height =
+      window.innerHeight - 64 + "px";
+  },[]);
 
   const handleRegister = () => {
+    if (user.cpassword !== user.password) setError("Passwords don't match");
+    else if (user.password.length < 5)
+      setError("Minimum length of password is 5 characters");
+    else {
+      axios
+        .post("http://localhost:4000/api/auth/register", {
+          email: user.email,
+          password: user.password,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          age: user.age,
+          gender: user.gender,
+        })
+        .then((res) => {
+          setError("Registration Successfull");
+        })
+        .catch((err) => {
+          if (err.response.status === 400) {
+            setError("Some of the fields are missing!!");
+          } else if (err.response.status === 402) {
+            setError("Email id already exists");
+          } else if (err.response.status === 500) {
+            setError("Server failed");
+          }
+        });
+    }
     setSnackBarOpen(true);
-
-    axios
-      .post('http://localhost:4000/api/auth/register-admin', {
-        email: user.email,
-        password: user.password,
-        cpassword: user.cpassword,
-        authority: user.authority,
-      })
-      .then((res) => {
-        props.history.push('/dashboard');
-        console.log(res.data);
-      })
-      .catch((err) => {
-        if (err.response.status === 400) {
-          setError('Some of the fields are missing!!');
-        } else if (err.response.status === 500) {
-          setError('Server failed');
-        }
-      });
   };
 
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+  const handleClose = (reason) => {
+    if (reason === "clickaway") {
       return;
     }
 
@@ -67,125 +75,137 @@ const Register = (props) => {
   };
 
   // set the position of error snackbar
-  var vertical = 'top';
-  var horizontal = 'center';
+  var vertical = "top";
+  var horizontal = "center";
 
   return (
-    <div id='container'>
-      <div id='success'></div>
-      <div id='form-container'>
-        <form className='register-form' id='registerForm'>
-          <div id='form-shadow'>
-            <div id='registerHeading'>
+    <div id="registration-container">
+      <div id="success"></div>
+      <div id="registration-form-container">
+        <form className="register-form" id="registerForm">
+          <div id="register-form-shadow">
+            <div id="registerHeading">
               <h1>Register Here!!</h1>
             </div>
-            <div className='input-styles input-width'>
+            <div className="register-input-styles register-input-width">
               {/* <label className="Rlabelcontainer" htmlFor="name">First Name</label> */}
               <input
-                className='box inline-box'
-                type='text'
-                value={user.name}
+                className="register-box register-inline-box"
+                type="text"
+                value={user.firstName}
                 onChange={handleInputs}
-                placeholder='First Name'
-                name='name'
-                id='firstName'
+                placeholder="First Name"
+                name="firstName"
+                id="firstName"
                 required
               />
               <input
-                className='box inline-box right-box'
-                type='text'
-                value={user.lastname}
+                className="register-box register-inline-box register-right-box"
+                type="text"
+                value={user.lastName}
                 onChange={handleInputs}
-                placeholder='Last Name'
-                name='name'
-                id='lasttName'
+                placeholder="Last Name"
+                name="lastName"
+                id="lastName"
                 required
               />
             </div>
-            <div className='input-styles '>
+            <div className="register-input-styles ">
               {/* <label className="box inline-box" htmlFor="email">Email ID</label> */}
               <input
-                className='box inline-box'
-                type='text'
+                className="register-box register-single-box"
+                type="text"
                 value={user.email}
                 onChange={handleInputs}
-                name='email'
-                id='email'
-                placeholder='E-Mail'
+                name="email"
+                id="email"
+                placeholder="E-Mail"
                 required
               />
             </div>
-            <div className='input-styles input-width'>
+            <div className="register-input-styles register-input-width">
               {/* <label className="Rlabelcontainer" htmlFor="password">Password</label> */}
               <input
-                className='box inline-box'
-                type='password'
+                className="register-box register-inline-box"
+                type="password"
                 value={user.password}
                 onChange={handleInputs}
-                name='password'
-                placeholder='Password'
-                id='password'
+                name="password"
+                placeholder="Password"
+                id="password"
                 required
               />
 
               <input
-                className='box inline-box right-box'
-                type='password'
+                className="register-box register-inline-box register-right-box"
+                type="password"
                 value={user.cpassword}
                 onChange={handleInputs}
-                name='cpassword'
-                placeholder='Confirm Password'
-                id='cpassword'
+                name="cpassword"
+                placeholder="Confirm Password"
+                id="cpassword"
                 required
               />
             </div>
-
+            <div className="register-input-styles ">
+              {/* <label className="box inline-box" htmlFor="email">Email ID</label> */}
+              <input
+                className="register-box register-single-box"
+                type="text"
+                value={user.age}
+                onChange={handleInputs}
+                name="age"
+                id="age"
+                placeholder="Age"
+                required
+              />
+            </div>
             {error && (
               <>
                 <Snackbar
-                  className='snackbar-reg'
+                  className="snackbar-reg"
                   open={snackBarOpen}
                   autoHideDuration={5000}
                   onClose={handleClose}
                   anchorOrigin={{ vertical, horizontal }}
                 >
-                  <Alert onClose={handleClose} severity='error'>
+                  <Alert onClose={handleClose} severity="error">
                     {error}
                   </Alert>
                 </Snackbar>
               </>
             )}
-            <br />
-            <div class='input-styles'>
-              {/* <label class="labels box" for="gender">Gender:</label> */}
+            <div className="register-input-styles">
+              {/* <label className="labels box" for="gender">Gender:</label> */}
               <select
-                class='box single-box drop-down '
-                id='gender'
-                name='gender'
+                className="register-box register-single-box register-drop-down "
+                id="gender"
+                name="gender"
+                onChange={handleInputs}
               >
-                <option value='gender'>Select Gender</option>
-                <option value='MALE'>Male</option>
-                <option value='FEMALE'>Female</option>
-                <option value='OTHERS'>Others</option>
+                <option value="gender">Select Gender</option>
+                <option value="MALE">Male</option>
+                <option value="FEMALE">Female</option>
+                <option value="OTHERS">Others</option>
               </select>
               <br />
             </div>
-            <div className='input-styles submit-btn'>
+            <div className="register-input-styles register-submit-btn">
               <input
-                id='submitDetails'
-                type='button'
-                className='form-submit'
+                id="submitDetails"
+                type="button"
+                className="register-form-submit"
                 onClick={handleRegister}
-                value='Register'
+                value="Register"
               />
             </div>
           </div>
         </form>
       </div>
-      <div id='login-page'>
-        <a href='/login'>
+      <div id="login-page">
+        <NavLink to="/login">
           <h4>Already Registered? Click here to Login</h4>
-        </a>
+        </NavLink>
       </div>
     </div>
   );

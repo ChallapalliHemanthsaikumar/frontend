@@ -39,10 +39,10 @@ const App = () => {
           Authorization: 'JWT fefege...',
           token: token,
           user: user,
-        },
+        }
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         setUserSession(response.data.token, response.data.user);
         setAuthLoading(false);
       })

@@ -5,7 +5,7 @@ import './Dashboard.css';
 
 function Dashboard(props) {
   const user = getUser();
-  // console.log(user);
+  console.log(user);
 
   // handle click event of logout button
   const handleLogout = () => {
@@ -17,7 +17,7 @@ function Dashboard(props) {
     <div>
       <br />
       <br />
-      Welcome Admin {user.email}!<br />
+      Welcome User {user.firstname} {user.lastname}!<br />
       <br />
       <input type='button' onClick={handleLogout} value='Logout' />
     </div>
