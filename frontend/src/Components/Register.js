@@ -21,6 +21,7 @@ const Register = (props) => {
     gender: "",
   });
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null)
   const [snackBarOpen, setSnackBarOpen] = useState(false);
 
   let name, value;
@@ -52,7 +53,7 @@ const Register = (props) => {
           gender: user.gender,
         })
         .then((res) => {
-          setError("Registration Successfull");
+          setSuccess('Registration Successfull')
         })
         .catch((err) => {
           if (err.response.status === 400) {
@@ -172,6 +173,21 @@ const Register = (props) => {
                 >
                   <Alert onClose={handleClose} severity="error">
                     {error}
+                  </Alert>
+                </Snackbar>
+              </>
+            )}
+            {success && (
+              <>
+                <Snackbar
+                  className="snackbar-reg"
+                  open={snackBarOpen}
+                  autoHideDuration={5000}
+                  onClose={handleClose}
+                  anchorOrigin={{ vertical, horizontal }}
+                >
+                  <Alert onClose={handleClose} severity="success">
+                    {success}
                   </Alert>
                 </Snackbar>
               </>
