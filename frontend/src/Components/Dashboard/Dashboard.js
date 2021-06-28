@@ -1,7 +1,7 @@
-import React from 'react';
-import { getUser, removeUserSession } from '../Utils/Common';
+import React from "react";
+import { getUser, removeUserSession } from "../../Utils/Common";
 
-import './Dashboard.css';
+import "./Dashboard.css";
 
 function Dashboard(props) {
   const user = getUser();
@@ -10,7 +10,7 @@ function Dashboard(props) {
   // handle click event of logout button
   const handleLogout = () => {
     removeUserSession();
-    props.history.push('/login');
+    props.history.push("/login");
   };
 
   return (
@@ -19,7 +19,7 @@ function Dashboard(props) {
       <br />
       Welcome User {user.firstname} {user.lastname}!<br />
       <br />
-      <input type='button' onClick={handleLogout} value='Logout' />
+      <input type="button" onClick={handleLogout} value="Logout" />
     </div>
   );
 }

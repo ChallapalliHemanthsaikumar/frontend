@@ -18,7 +18,7 @@
 }
 
 .register-input-styles {
-  margin:20px;
+  margin: 20px;
 }
 
 .register-box {
@@ -94,9 +94,11 @@
   font-size: 16px;
   visibility: hidden;
 }
+
 input#cpassword {
   height: 34px !important;
 }
+
 input#email {
   width: -webkit-fill-available;
 }

@@ -21,7 +21,7 @@ const Register = (props) => {
     gender: "",
   });
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null)
+  const [success, setSuccess] = useState(null);
   const [snackBarOpen, setSnackBarOpen] = useState(false);
 
   let name, value;
@@ -35,7 +35,7 @@ const Register = (props) => {
   useEffect(() => {
     document.getElementById("registration-container").style.height =
       window.innerHeight - 64 + "px";
-  },[]);
+  }, []);
 
   const handleRegister = () => {
     setError("");
@@ -53,7 +53,7 @@ const Register = (props) => {
           gender: user.gender,
         })
         .then((res) => {
-          setSuccess('Registration Successfull')
+          setSuccess("Registration Successfull");
         })
         .catch((err) => {
           if (err.response.status === 400) {

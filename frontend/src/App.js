@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
+import axios from "axios";
 
-import Login from './Components/Login';
-import Dashboard from './Components/Dashboard';
-import Home from './Components/Home';
+import Login from "./Components/Login/Login";
+import Dashboard from "./Components/Dashboard/Dashboard";
+import Home from "./Components/Home/Home";
 
-import PrivateRoute from './Utils/PrivateRoute';
-import PublicRoute from './Utils/PublicRoute';
+import PrivateRoute from "./Utils/PrivateRoute";
+import PublicRoute from "./Utils/PublicRoute";
 import {
   getToken,
   getUser,
   removeUserSession,
   setUserSession,
-} from './Utils/Common';
-import Register from './Components/Register';
+} from "./Utils/Common";
+import Register from "./Components/Register/Register";
 
 const App = () => {
   const [authLoading, setAuthLoading] = useState(true);
@@ -35,11 +35,11 @@ const App = () => {
     axios
       .get(`http://localhost:4000/api/auth/me`, {
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'JWT fefege...',
+          "Content-Type": "application/json",
+          Authorization: "JWT fefege...",
           token: token,
           user: user,
-        }
+        },
       })
       .then((response) => {
         // console.log(response);
@@ -53,33 +53,33 @@ const App = () => {
   }, []);
 
   if (authLoading && getToken()) {
-    return <div className='content'>Checking Authentication...</div>;
+    return <div className="content">Checking Authentication...</div>;
   }
 
   return (
-    <div className='App'>
+    <div className="App">
       <BrowserRouter>
         <div>
-          <div className='header'>
-            <NavLink exact activeClassName='active' to='/'>
+          <div className="header">
+            <NavLink exact activeClassName="active" to="/">
               Home
             </NavLink>
-            <NavLink activeClassName='active' to='/login'>
+            <NavLink activeClassName="active" to="/login">
               Login
             </NavLink>
-            <NavLink activeClassName='active' to='/register'>
+            <NavLink activeClassName="active" to="/register">
               Register
             </NavLink>
-            <NavLink activeClassName='active' to='/dashboard'>
+            <NavLink activeClassName="active" to="/dashboard">
               Dashboard
             </NavLink>
           </div>
-          <div className='content'>
+          <div className="content">
             <Switch>
-              <Route exact path='/' component={Home} />
-              <PublicRoute path='/register' component={Register} />
-              <PublicRoute path='/login' component={Login} />
-              <PrivateRoute path='/dashboard' component={Dashboard} />
+              <Route exact path="/" component={Home} />
+              <PublicRoute path="/register" component={Register} />
+              <PublicRoute path="/login" component={Login} />
+              <PrivateRoute path="/dashboard" component={Dashboard} />
             </Switch>
           </div>
         </div>
