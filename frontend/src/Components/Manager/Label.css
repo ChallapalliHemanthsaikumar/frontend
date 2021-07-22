@@ -1,0 +1,13 @@
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 30vw;
+    margin: 10px auto;
+  }
+
+  .hardcode {
+    display: flex;
+    justify-content: space-between;
+    width: 30vw;
+    margin: auto;
+  }

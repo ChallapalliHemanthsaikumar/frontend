@@ -11,8 +11,9 @@ const Home = () => {
                 <p>A place to dynamically monitor and choose best ads for your product</p> 
             </div>
             <div className="product-description">
-                Ad- Advisor remends the best ad for you product. The ad can be futher anlaysed using different statistical plots. 
+                Ad- Advisor remends the best ad for you product. The ad can be futher anlaysed using different statistical plotssssss. 
             </div>
+           
         </div>
     )
 

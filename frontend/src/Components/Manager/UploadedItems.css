@@ -1,0 +1,22 @@
+.uploadedItems{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 30vw;
+    margin:20px auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.uploadedItems__data{
+    background-color:#dcdcdc ;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    font-size: large;
+}
+
+.uploadedItems__data img{
+    width: 100px;
+    height: 100px;
+}
