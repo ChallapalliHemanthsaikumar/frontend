@@ -34,12 +34,13 @@ const Login = (props) => {
       })
       .then((response) => {
         setLoading(false);
-        // console.log('data', response.data);
-        setUserSession(response.data.token, response.data.user);
+         console.log('data', response.data);
+        setUserSession(response.data.token, response.data.user.email);
         // console.log(response.data.user);
         props.history.push("/dashboard");
       })
       .catch((error) => {
+        console.log(error.response);
         setLoading(false);
         if (error.response.status === 400)
           setError("Some of the fields are missing!!");
