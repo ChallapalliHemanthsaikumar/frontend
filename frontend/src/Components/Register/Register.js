@@ -15,10 +15,8 @@ const Register = (props) => {
     email: "",
     password: "",
     cpassword: "",
-    firstName: "",
-    lastName: "",
-    age: "",
-    gender: "",
+    name: "",
+    phone:"",
   });
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -44,13 +42,12 @@ const Register = (props) => {
       setError("Minimum length of password is 5 characters");
     else {
       axios
-        .post("http://localhost:4000/api/auth/register", {
+      //http://localhost:4000/api/auth/registerLabeller
+        .post("http://localhost:4000/api/auth/registerManager", {
           email: user.email,
           password: user.password,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          age: user.age,
-          gender: user.gender,
+          name:user.name,
+          phone:user.phone,
         })
         .then((res) => {
           setSuccess("Registration Successfull");
