@@ -118,12 +118,15 @@ console.log(userType);
               <h1>Register Here!!</h1>
             </div>
            
-            <div onChange={RadioEvent} className="register-input-styles register-input-width">
-              
+            <div className='register__radio' onChange={RadioEvent} >
+              <div className='register__radio__value'>
               <input  type='radio' value='labeller' name='radio' />
               <p>Labeller</p>
+              </div>
+              <div className='register__radio__value'>
               <input  type='radio' value='manager' name='radio'/>
              <p>Manager</p>
+             </div>
             </div>
             <div className="register-input-styles register-input-width">
               {/* <label className="Rlabelcontainer" htmlFor="name">First Name</label> */}
@@ -185,19 +188,7 @@ console.log(userType);
                 required
               />
             </div>
-            <div className="register-input-styles ">
-              {/* <label className="box inline-box" htmlFor="email">Email ID</label> */}
-              <input
-                className="register-box register-single-box"
-                type="text"
-                value={user.age}
-                onChange={handleInputs}
-                name="age"
-                id="age"
-                placeholder="Age"
-                required
-              />
-            </div>
+          
             <div className="register-input-styles ">
                 <PhoneInput
                   className="register-box register-single-box"
@@ -237,21 +228,7 @@ console.log(userType);
                 </Snackbar>
               </>
             )}
-            <div className="register-input-styles">
-              {/* <label className="labels box" for="gender">Gender:</label> */}
-              <select
-                className="register-box register-single-box register-drop-down "
-                id="gender"
-                name="gender"
-                onChange={handleInputs}
-              >
-                <option value="gender">Select Gender</option>
-                <option value="MALE">Male</option>
-                <option value="FEMALE">Female</option>
-                <option value="OTHERS">Others</option>
-              </select>
-              <br />
-            </div>
+            
             <div className="register-input-styles register-submit-btn">
               <input
                 id="submitDetails"

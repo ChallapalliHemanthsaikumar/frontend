@@ -111,3 +111,24 @@ input#lastName {
 .snackbar-reg {
   margin-top: 45px;
 }
+.register__radio{
+  display: flex;
+  justify-content: center;
+  margin-bottom: -30px;
+}
+.register__radio__value{
+  display: flex;
+  align-items: center;
+  margin:0px 30px;
+  color: gray;
+  font-size: x-large;
+}
+.register__radio__value input{
+  margin-bottom: 10px;
+  margin-right: 10px;
+  
+}
+#phone {
+  
+  outline: none;
+}
