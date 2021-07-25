@@ -23,6 +23,7 @@
 
 .register-box {
   height: 35px;
+  border: 1px solid black;
 }
 
 .register-inline-box {
