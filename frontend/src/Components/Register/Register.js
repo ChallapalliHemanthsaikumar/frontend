@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
-
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 import "./Register.css";
 
 function Alert(props) {
@@ -21,6 +22,12 @@ const Register = (props) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [snackBarOpen, setSnackBarOpen] = useState(false);
+  const [phonevalue,setphoneValue]=useState()
+  const [userType,setType]=useState('labeller')
+
+  const RadioEvent=(e)=>{
+    setType(e.target.value)
+  }
 
   let name, value;
   const handleInputs = (e) => {
@@ -41,13 +48,14 @@ const Register = (props) => {
     else if (user.password.length < 5)
       setError("Minimum length of password is 5 characters");
     else {
-      axios
+      if(userType==='labeller'){
+        axios
       //http://localhost:4000/api/auth/registerLabeller
-        .post("http://localhost:4000/api/auth/registerManager", {
+        .post("http://localhost:4000/api/auth/registerLabeller", {
           email: user.email,
           password: user.password,
           name:user.name,
-          phone:user.phone,
+          phone:phonevalue,
         })
         .then((res) => {
           setSuccess("Registration Successfull");
@@ -61,6 +69,29 @@ const Register = (props) => {
             setError("Server failed");
           }
         });
+      }else{
+        axios
+      //http://localhost:4000/api/auth/registerLabeller
+        .post("http://localhost:4000/api/auth/registerManager", {
+          email: user.email,
+          password: user.password,
+          name:user.name,
+          phone:phonevalue,
+        })
+        .then((res) => {
+          setSuccess("Registration Successfull");
+        })
+        .catch((err) => {
+          if (err.response.status === 400) {
+            setError("Some of the fields are missing!!");
+          } else if (err.response.status === 402) {
+            setError("Email id already exists");
+          } else if (err.response.status === 500) {
+            setError("Server failed");
+          }
+        });
+      }
+      
     }
     setSnackBarOpen(true);
   };
@@ -72,7 +103,7 @@ const Register = (props) => {
 
     setSnackBarOpen(false);
   };
-
+console.log(userType);
   // set the position of error snackbar
   var vertical = "top";
   var horizontal = "center";
@@ -86,15 +117,23 @@ const Register = (props) => {
             <div id="registerHeading">
               <h1>Register Here!!</h1>
             </div>
+           
+            <div onChange={RadioEvent} className="register-input-styles register-input-width">
+              
+              <input  type='radio' value='labeller' name='radio' />
+              <p>Labeller</p>
+              <input  type='radio' value='manager' name='radio'/>
+             <p>Manager</p>
+            </div>
             <div className="register-input-styles register-input-width">
               {/* <label className="Rlabelcontainer" htmlFor="name">First Name</label> */}
               <input
                 className="register-box register-inline-box"
                 type="text"
-                value={user.firstName}
+                value={user.name}
                 onChange={handleInputs}
                 placeholder="First Name"
-                name="firstName"
+                name="name"
                 id="firstName"
                 required
               />
@@ -159,6 +198,15 @@ const Register = (props) => {
                 required
               />
             </div>
+            <div className="register-input-styles ">
+                <PhoneInput
+                  className="register-box register-single-box"
+                  id="phone"
+                  placeholder="Enter phone number"
+                  value={phonevalue}
+                  onChange={setphoneValue}
+                />
+              </div>
             {error && (
               <>
                 <Snackbar
