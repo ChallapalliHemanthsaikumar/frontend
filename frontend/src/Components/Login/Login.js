@@ -35,9 +35,16 @@ const Login = (props) => {
       .then((response) => {
         setLoading(false);
          console.log('data', response.data);
-        setUserSession(response.data.token, response.data.user.email);
+         if(response.data.flag===0) {
+           setUserSession(response.data.token, response.data.labeller.email);
+           props.history.push("/dashboard/user");
+         }
+         else{
+           setUserSession(response.data.token, response.data.manager.email);
+           props.history.push("/dashboard/manager");
+         }
         // console.log(response.data.user);
-        props.history.push("/dashboard");
+
       })
       .catch((error) => {
         console.log(error.response);

@@ -29,12 +29,11 @@ function Dashboard(props) {
       Welcome User {user.firstname} {user.lastname}!<br />
       <br />
         
-        <Link to='/dashboard/manager'>Manager</Link>
-        <Link to='/dashboard/user'>User</Link>
+
         <Switch>
-        <Route path='/dashboard/user'><Insert todos={todos} input ={input} setTodos={setTodos}setInput={setInput}/>
+        <Route  exact path='/dashboard/manager'><Insert todos={todos} input ={input} setTodos={setTodos}setInput={setInput}/>
         <TodoList todos={todos} /></Route>
-       <Route path='/dashboard/manager' exact component={Label}/> 
+       <Route exact path='/dashboard/user' exact component={Label}/>
        </Switch>
       <input type="button" onClick={handleLogout} value="Logout" />
     </div>
