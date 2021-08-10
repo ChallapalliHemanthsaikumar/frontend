@@ -51,7 +51,7 @@ const Register = (props) => {
       if(userType==='labeller'){
         axios
       //http://localhost:4000/api/auth/registerLabeller
-        .post("http://localhost:4000/api/auth/registerLabeller", {
+        .post("https://labelling-backend.herokuapp.com/api/auth/registerLabeller", {
           email: user.email,
           password: user.password,
           name:user.name,
@@ -72,7 +72,7 @@ const Register = (props) => {
       }else{
         axios
       //http://localhost:4000/api/auth/registerLabeller
-        .post("http://localhost:4000/api/auth/registerManager", {
+        .post("https://labelling-backend.herokuapp.com/api/auth/registerManager", {
           email: user.email,
           password: user.password,
           name:user.name,
