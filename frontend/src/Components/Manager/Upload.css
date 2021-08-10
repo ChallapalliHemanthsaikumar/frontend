@@ -34,8 +34,23 @@
     margin:5px auto;
     padding: 5px;
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    flex-direction: row;
+    
+    
+}
+.upload__data div{
+    margin:1em;
+}
+.upload__data div button{
+    width:5em;
+    height:2em;
+    border-radius:1em;
+    margin:1em;
+    
+}
+.upload__data p{
+    display: flex;
+    align-items: flex-start;
 }
 .upload__details{
     background-color:#dcdcdc ;
@@ -44,7 +59,7 @@
     font-size: x-large;
 }
 .upload__preview img{
-    width: 200px;
-    height: 200px;
+    z-index:-1;
+    
 
 }

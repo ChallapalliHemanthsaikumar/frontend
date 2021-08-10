@@ -33,7 +33,7 @@ const App = () => {
     // console.log('usen', user);
 
     axios
-      .get(`http://localhost:4000/api/auth/me`, {
+      .get(`https://labelling-backend.herokuapp.com/api/auth/me`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "JWT fefege...",
@@ -42,7 +42,7 @@ const App = () => {
         },
       })
       .then((response) => {
-        // console.log(response);
+        console.log(response);
         setUserSession(response.data.token, response.data.user);
         setAuthLoading(false);
       })

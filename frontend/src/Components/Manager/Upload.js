@@ -4,12 +4,13 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import "./Upload.css";
+import Edit from "../Editor/Edit";
 function Upload() {
 
     
 
    
-
+  const [selectEdit,setSelectedEdit] = useState(false);
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
   const[isFileUploaded,setIsFileUploaded] = useState(false)
@@ -93,6 +94,10 @@ useEffect(()=>{
 
   }
 
+  const editOption = ()=> {
+    setSelectedEdit(!selectEdit);
+  }
+
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -110,16 +115,26 @@ useEffect(()=>{
       </div>
       {isFilePicked ? (
         <div className='upload__data'>
-          <p className='upload__details'>Filename: {selectedFile.name}</p>
-          <p className='upload__details'>Filetype: {selectedFile.type}</p>
-          <p className='upload__details'>Size in bytes: {selectedFile.size}</p>
+          <div>
+            <button type="button" onClick={editOption}>Select</button>
+            <p className='upload__details'>Filename: {selectedFile.name}</p>
+            <p className='upload__details'>Filetype: {selectedFile.type}</p>
+            <p className='upload__details'>Size in bytes: {selectedFile.size}</p>
+          </div>
           <div className ='upload__preview' >
-            <img  className src={profile}  alt='preview'/>
+          {
+            selectEdit?(<Edit profile={profile}/>):
+            (<div><img  className src={profile}  alt='preview'/></div>)
+          }
+
+            
           </div>
         </div>
       ) : (
+        <>
         <p>Select a file to show details</p>
-      )}
+        </>
+        )}
       <div className="uploadButton" onClick={handleUpload}>
         Upload
         <CloudUploadIcon className='uploadIcon' />
