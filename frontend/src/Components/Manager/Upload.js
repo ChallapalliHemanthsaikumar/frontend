@@ -4,7 +4,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import "./Upload.css";
-import Edit from "../Editor/Edit";
+import Image from "../Editor/image";
 function Upload() {
 
     
@@ -123,12 +123,12 @@ useEffect(()=>{
           </div>
           <div className ='upload__preview' >
           {
-            selectEdit?(<Edit profile={profile}/>):
-            (<div><img  className src={profile}  alt='preview'/></div>)
+            <Image profile={profile} selectEdit={selectEdit} />
           }
 
             
           </div>
+          
         </div>
       ) : (
         <>
